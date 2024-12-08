@@ -1,0 +1,142 @@
+<div class="container m-4" id="times" >
+    <div class="row">
+        <div class="col-md-3">
+            <p class="fs-5">Espace utilisateur !</p>
+        </div>
+        
+    </div>
+    <div class="row mt-3 col-md-11 m-2 bg-white">
+        <div class="row col-md-12 mt-4 container">
+            <div classe="col-md-2">
+                <button class="fs-5 btn btn-outline icon-person" > <mat-icon>person</mat-icon> Informations personnelles</button>
+                <button class="fs-5 btn icon-person offset-md-6 btn-md text-white bg-success" mat-raised-button style="font-family: 'Times New Roman', Times New Roman;"> <mat-icon></mat-icon> Enregistrer</button>
+
+            </div>
+            <hr class=" mx-4">
+        </div>
+        
+          <!-- gestionnaire et son compte -->
+        <div class="row mb-3" *ngIf="userValideGest != null">
+            <div class="col-md-12 p-4 mt-2">
+                <div>
+                    <form class="form">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="" class="form-label">Nom</label>
+                                <input type="text" value="{{userValideGest.nom}}" class="form-control"  FormControlName="nom">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="" class="form-label">Prenom</label>
+                                <input type="text" value="{{userValideGest.prenom}} " class="form-control" formControlName="prenom">
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Email</label>
+                                <input type="email" class="form-control" value="{{userValideGest.email}}" placeholder="Saisir l'email *" formControlName="email">
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Role</label>
+                                <input type="text" class="form-control" value="{{userValideGest.role}}" formControlName="numeroTel">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="" class="form-label">Numero de Telephone</label>
+                               <input type="text" class="form-control" value="{{userValideGest.numeroTel}}" >
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" value="{{userValideGest.password}}">
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Etudiant et son compte -->
+        <div class="row mb-3" *ngIf="userValideEtu != null">
+            <div class="col-md-12 p-4 mt-2">
+                <div>
+                    <form class="form">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="" class="form-label">Nom</label>
+                                <input type="text" value="{{userValideEtu.nom}}" class="form-control"  FormControlName="nom">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="" class="form-label">Prenom</label>
+                                <input type="text" value="{{userValideEtu.prenom}} " class="form-control" formControlName="prenom">
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Email</label>
+                                <input type="email" class="form-control" value="{{userValideEtu.email}}" placeholder="Saisir l'email *" formControlName="email">
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Role</label>
+                                <input type="text" class="form-control" value="{{userValideEtu.role}}" formControlName="numeroTel">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="" class="form-label">Numero de Telephone</label>
+                               <input type="text" class="form-control" value="{{userValideEtu.numeroTel}}" >
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" value="{{userValideEtu.password}}">
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Filiere</label>
+                                <input type="text" class="form-control" value="{{userValideEtu.filiere?.nomFiliere}}">
+                            </div>
+                            <div class="col-md-4 mb-3" >
+                                <label for="" class="form-label">Classe</label>
+                                <input type="text" class="form-control" value="{{userValideEtu.salleClasse?.nomClasse}}">
+                            </div>
+                            <div class="col-md-3 mb-3 mt-4 mx-2" >
+                                <button mat-raised-button class="text-white"  style="background-color: #0B57D0;font-family: 'Times New Roman';" (click)="paiementEtudiantOperateur(userValideEtu.email)"> Effectuer un paiement</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <section class=" col-md-12 mx-2">
+                <div class="">
+                    <p class="fs-5 mb-2 mx-">Historique de paiements</p>
+                    <hr>
+                </div>
+                <div class=" col-md-12" *ngIf="listPaiement!=null">
+                    <div class="row p-3">
+                        <div class="col-md-12 mb-3"  *ngFor="let paiement of listPaiement">
+                            <div class="row pt-2 py-2" id="pointeur">
+                                <div class="col-md-3">
+                                    <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">Paiement {{paiement.modeDePaiement.libelle}}</p>
+                                    <span class="text-muted">{{paiement.status}}</span>
+                                </div>
+                                <div class="col-md-1 offset-md-8">
+                                    <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">{{paiement.montant}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-12" *ngIf="listPaiementEt!=null">
+                    <div class="row p-3">
+                        <div class="col-md-12 mb-4" id="pointeur" *ngFor="let paiement of listPaiementEt">
+                            <div class="row pt-2 py-2" id="pointeur">
+                                <div class="col-md-3">
+                                    <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">Paiement {{paiement.modeDePaiement.libelle}}</p>
+                                    <span class="text-muted">{{paiement.status}}</span>
+                                </div>
+                                <div class="col-md-1 offset-md-8">
+                                    <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">{{paiement.montant}}</p>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </section>            
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,27 @@
+<div class="container m-4" id="times">
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <span class="GestEt" class="fs-5">Dashboard</span>
+        </div>
+        <div class="col-md-4 offset-md-5 mb-3">
+            <span>Bienvenue <span class="text-primary" *ngIf="profilUser">{{profilUser.username}}</span>  sur votre espace !</span>
+        </div>
+    </div>
+    <div class="mt-4 row p-2" >
+        <div class="col-md-3 p-4 mb-3 col-sm-6 mx-1 col-xs-4" style="background-color: #CFD346;">
+            <h1 style="font-family: 'Times New Roman';">Etudiants: {{nombreEtudiant}}</h1>
+        </div>
+        <div class="col-md-3 offset-md-2 p-4 mb-3 col-sm-6 col-xs-8" style="background-color: #E8AA63;">
+            <h1 style="font-family: 'Times New Roman';">Paiements: {{nombrePaiement}}</h1>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="bg-white p-4 col-md-11">
+            <h1 style="font-family: 'Times New Roman';">Activités récentes</h1>
+            <div class="p-5">
+                <h2 style="font-family: 'Times New Roman';"  class="fs-4 text-muted text-center"> Aucunes pour le moment</h2>
+            </div>
+        </div>
+        
+    </div>
+</div>

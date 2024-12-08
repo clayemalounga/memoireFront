@@ -1,0 +1,46 @@
+<div class="container" id="times">
+    <div class="row">
+        <div class="col-md-3 mb-4 mt-4">
+            <p class="fs-5">Details du paiement</p>
+        </div>
+    </div>
+    <div class="shadow col-md-8 p-4 m-auto">
+        <div class="row m-3">
+            <div class="col-md-7">
+                <mat-card>
+                    <mat-card-header mat-card-image>
+                        <mat-card-title-group>
+                            <mat-card-title>{{paiement.etudiant.matricule}}</mat-card-title>
+                            <mat-card-subtitle>{{paiement.etudiant.nom}}</mat-card-subtitle>
+                            <img class="img-circle"
+                                src="https://th.bing.com/th/id/OIP.7NG5ZzHmdC37mcJN2FZM5AHaHa?w=163&h=180&c=7&r=0&o=5&pid=1.7"
+                                class="img-fluid rounded-start" alt="Mon image" style="width: 180px;">
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <span class="card-text">Prenom : {{paiement.etudiant.prenom}}</span>
+                        <p class="card-text">Email : {{paiement.etudiant.email}}</p>
+                        <p class="card-text">Numero de telephone : {{paiement.etudiant.numeroTel}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-md-4 mx-3">
+                <mat-card>
+                    <mat-card-header mat-card-image>
+                        <mat-card-title-group>
+                            <mat-card-title>{{paiement.datePaiement}}</mat-card-title>
+                            <mat-card-subtitle>{{paiement.status}}</mat-card-subtitle>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content class="mt-5">
+                        <span class="card-text mt-2">Paiement : {{paiement.modeDePaiement.libelle}}</span>
+                        <p class="card-text mt-2">Date : {{paiement.datePaiement}}</p>
+                        <p class="card-text mt-2" style="color: #0B57D0 ;">Montant : {{paiement.montant}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+           
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+<mat-toolbar>
+    <button mat-icon-button (click)="drawerOpen.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Claye'sTrans</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="./historiquePaiements"> Historique de paiements</button>
+    <button mat-button id="RougeD" (click)="deconnexion()">Déconnexion</button>
+    <button mat-button routerLink="./profile" *ngIf="profileUser;else compteUserNoExist"> <mat-icon>person</mat-icon> <span >{{profileUser.username}}</span></button>
+    <ng-template #compteUserNoExist>
+        <button mat-button routerLink="./profile"> <mat-icon>person</mat-icon> <span>Mon compte</span></button>
+    </ng-template>
+</mat-toolbar>
+
+<mat-drawer-container>
+    <mat-drawer #drawerOpen mode="side" opened="true" position="start">
+        <mat-nav-list>
+            <mat-list-item *ngIf="profilUser !=null">
+                <button class="text-white" mat-button routerLink="./dashboard"> <mat-icon>dashboard</mat-icon><Span id="dashTaille" >Dashboard</Span></button>
+            </mat-list-item>
+            <mat-list-item *ngIf="profilUser !=null">
+                <button class="text-white" mat-button routerLink="./gestionEtudiants">Gestion des étudiants</button>
+            </mat-list-item>
+            <mat-list-item *ngIf="profilUser !=null" >
+                <button class="text-white" mat-button routerLink="./gestionPaiements">Gestion des paiements</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button class="text-white" mat-button routerLink="./historiquePaiements">Historique de paiements</button>
+            </mat-list-item>
+            <mat-list-item>
+                <button class="text-white" mat-button routerLink="./profile"> <span></span>Mon compte</button>
+            </mat-list-item>
+        </mat-nav-list>
+
+    </mat-drawer>
+    <mat-drawer-content>
+        <div style="min-height: 600px; min-width: 600px" class="contenueRouter">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

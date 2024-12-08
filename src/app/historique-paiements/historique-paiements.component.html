@@ -1,0 +1,38 @@
+<div class="container m-4" id="times">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <p class="fs-5">Historique de paiements</p>
+        </div>
+
+        <div class="shadow col-md-11" *ngIf="listPaiement != null">
+            <div class="row m-3">
+                <div class="col-md-12 mb-4" id="pointeur" *ngFor="let p of listPaiement" (click)="detailPaiement(p)">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">Paiement {{p.modeDePaiement.libelle}}</p>
+                            <span class="text-muted">{{p.datePaiement}}</span>
+                        </div>
+                        <div class="col-md-1 offset-md-8">
+                            <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">{{p.montant}}F</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shadow col-md-11" *ngIf="listPaiementEt != null">
+            <div class="row m-3">
+                <div class="col-md-12 mb-4" id="pointeur" *ngFor="let p of listPaiementEt" (click)="detailPaiement(p)">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">Paiement {{p.modeDePaiement.libelle}}</p>
+                            <span class="text-muted">{{p.datePaiement}}</span>
+                        </div>
+                        <div class="col-md-1 offset-md-8">
+                            <p class="text-bold text-block fs-5 fw-bold" style="color: #0B57D0;">{{p.montant}}F</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

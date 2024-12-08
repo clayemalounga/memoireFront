@@ -1,0 +1,115 @@
+<div class="container m-4" id="times">
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <span class="fs-5">Enregistrement d'un etudiant</span>
+        </div>
+        <p *ngIf="message" class="alert alert-success text-center container col-md-11">
+            {{message}}
+        </p>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-11 bg-white p-4 mt-4">
+            <div>
+                <form [formGroup]="etudiantForm" action="" method="post">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <input type="text" class="form-control" placeholder="Saisir le nom *" formControlName="nom">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" class="form-control" placeholder="Saisir le prenom *" formControlName="prenom">
+                        </div>
+                        <div class="col-md-4 mb-3" >
+                            <input type="email" class="form-control" placeholder="Saisir l'email *" formControlName="email">
+                        </div>
+                        <div class="col-md-4 mb-3" >
+                            <input type="text" class="form-control" placeholder="Saisir le numero de telephone *" formControlName="numeroTel">
+                        </div>
+                        <div class="col-md-4 mb-3" >
+                            <input type="password" class="form-control" placeholder="Saisir le mot de passe *" formControlName="password">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <select name="" id="" class="form-control" formControlName="filiere">
+                                <option value="" *ngFor="let item of filiere" [value]="item.id">{{item.nomFiliere}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3" >
+                            <select name="" id="" class="form-control" formControlName="classe">
+                                <option value="" *ngFor="let item of sallesClasse" [value]="item.id">{{item.nomClasse}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3" >
+                            <button (click)="saveEtudiant()" style="background-color: #0B57D0 ;" mat-button>Soumettre <mat-icon iconPositionEnd>send</mat-icon></button>
+                        </div>
+                        <div class="offset col-md-3 mb-3 mt-1">
+                            <button mat-raised-button (click)="listesEtudiants()">Retard de paiements</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="">
+        </div>
+        <div class="row bg-white p-4 mx-1 col-md-11">
+            <span class="fs-5 mb-4">Liste des étudiants</span>
+            <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z1" (matSortChange)="announceSortChange($event)">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trie par identidiant"> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="prenom">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Trie par prenom"> Prenom </th>
+                    <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="nom">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="telephone">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Telephone </th>
+                    <td mat-cell *matCellDef="let element"> {{element.numeroTel}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="role">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                    <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="details">
+                    <th mat-header-cell *matHeaderCellDef> Details </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-button> <mat-icon iconPositionEnd>visibility</mat-icon> details</button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="paiement">
+                    <th mat-header-cell *matHeaderCellDef> Paiement </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button style="background-color: #0B57D0;">paiement</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,10 @@
+#times{
+    font-family: 'Times New Roman';
+}
+
+#pointeur{
+    cursor: pointer;
+}
+#pointeur:hover{
+    background-color: #F4F4F4;
+}

@@ -1,0 +1,27 @@
+.spacer{
+    flex: auto;
+}
+#RougeD{
+    color: red;
+}
+mat-toolbar{
+    background-color: white;
+    font-family: 'Times New Roman';
+}
+mat-drawer{
+    background-color: #0B57D0;
+    font-family: 'Times New Roman';
+}
+#dashTaille{
+    font-family: 'Times New Roman';
+    font-size: 20px;
+}
+button{
+    font-family: 'Times New Roman';
+    font-size: 15px;
+}
+.contenueRouter{
+    font-family: 'Times New Roman';
+    font-size: 15px;
+
+}

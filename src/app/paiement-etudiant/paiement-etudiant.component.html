@@ -1,0 +1,122 @@
+<div class="container m-4" id="times">
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <p class="fs-5">Paiement de la scolarité</p>
+        </div>
+        <p *ngIf="message"  class="alert alert-success text-center container col-md-11">
+            {{message}}
+        </p>
+        <div class="row  mt-3  col-md-12">
+            <div class="col-md-4">
+                <mat-card>
+                    <mat-card-header mat-card-image>
+                        <mat-card-title-group>
+                            <mat-card-title>{{etudiant.matricule}}</mat-card-title>
+                            <mat-card-subtitle>{{etudiant.nom}}</mat-card-subtitle>
+                            <img class="img-circle"
+                                src="https://th.bing.com/th/id/OIP.7NG5ZzHmdC37mcJN2FZM5AHaHa?w=163&h=180&c=7&r=0&o=5&pid=1.7"
+                                class="img-fluid rounded-start" alt="Mon image" style="width: 180px;">
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <span class="card-text">Prenom : {{etudiant.prenom}}</span>
+                        <p class="card-text">Email : {{etudiant.email}}</p>
+                        <p class="card-text">Numero de telephone : {{etudiant.numeroTel}}</p>
+                        <p class="card-text">Filiere : {{etudiant.filiere?.nomFiliere}}</p>
+                        <p class="card-text">Filiere : {{etudiant.role}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!-- Gestionnaire paiement -->
+            <div class="col-md-7 border bg-white" *ngIf="userValideGest != null">
+                <p class="fs-5 p-3">Echeance de paiement par etudiant</p>
+                <div class="row p-4 pt-4 mx-2">
+
+                    <div *ngFor="let item of echeancePaiementEt" class="col-md-2 mx-1 p-2 mb-3 rounded" [ngClass]="{
+                        'bg-success text-white': item.status === 'payé',
+                        'bg-danger text-white': item.status !== 'payé'
+                      } " (click)="payerEnEspece(item)">
+
+                        {{item.mois}}: {{item.montantDu}} {{item.status}}
+                    </div>
+                </div>
+
+            </div>
+            <!-- Etudiant paiement -->
+            <div class="col-md-7 border bg-white" *ngIf="userValideEtu != null">
+                <p class="fs-5 p-3">Echeance de paiement de {{userValideEtu.nom}}</p>
+                <div class="row p-4 pt-4 mx-2">
+
+                    <div *ngFor="let item of echeancePaiementEt" class="col-md-2 mx-1 p-2 mb-3 rounded" [ngClass]="{
+                        'bg-success text-white': item.status === 'payé',
+                        'bg-danger text-white': item.status !== 'payé'
+                      }  " (click)="toggleForm(item)">
+                        {{item.mois}}: {{item.montantDu}} {{item.status}}
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="row mt-4 py-3" *ngIf="userValideGest != null">
+        <div class="col-md-4 mx-0">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>Autres moyen de paiement</mat-card-title>
+                        <mat-card-subtitle>Orange Money</mat-card-subtitle>
+                        <img class="img-circle"
+                            src="https://monisnapcontent.kinsta.cloud/wp-content/uploads/2019/06/orange-money.jpg"
+                            alt="Mon image Orange Money" class="img-fluid rounded-start mb-3" style="width: 80px;">
+                    </mat-card-title-group>
+                </mat-card-header>
+            </mat-card>
+        </div>
+        <div class="col-md-6 bg-white shadow p-3" n>
+            <p>NB: Pour effectuer un paiement en espece, vous pouvez simplement cliquer sur l'un des mois non solder
+                pour pouvoir effectuer le paiement.
+                Les mois qui sont deja payer ne seront plus traiter
+            </p>
+        </div>
+
+    </div>
+    <div class="row mt-4 py-3" *ngIf="userValideEtu != null">
+        <div class="col-md-6 bg-white shadow p-3" [hidden]="!isFormVisible">
+
+            <form action="" method="post" class="form" [formGroup]="formgroup">
+
+                <div class="row">
+                    <caption class="text-center">Paiement par Operateur </caption>
+
+                    <div class="form-group mb-3 col-md-6" >
+                        <input type="text" name="" id="" formControlName="numero" placeholder="785818082 *" title="Entrer votre numero de telephone " class="form-control">
+                    </div>
+                    <div class="form-group mb-3 col-md-6">
+                        <input type="text" class="form-control" formControlName="montant" placeholder="50000 *" title="Entrer le montant">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select name="" class="form-control" formControlName="typePaiement" id="">
+                            <option value="OM">Orange money</option>
+                            <option value="W">Wave</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <button class="btn btn-success" (click)="paiementEtudiantPaOperateur()">Payer</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+        
+        <div class="col-md-5 bg-white shadow p-3">
+            <p>NB: Pour effectuer un paiement en espece, vous pouvez simplement cliquer sur l'un des mois non solder
+                pour pouvoir effectuer le paiement.
+                Les mois qui sont deja payer ne seront plus traiter
+            </p>
+        </div>
+    </div>
+</div>
